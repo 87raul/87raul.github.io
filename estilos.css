@@ -1,0 +1,63 @@
+p{
+    margin: 0px;
+    padding: 0px;
+    font-size: 16px;
+}
+body{background-color: rgb(166, 196, 186);
+    font-family: comic sans-serif;
+    text-align: center;
+}
+#container{
+    width: 80%;
+    margin: 0px auto;
+
+}
+header h1 {
+    height: 200px;
+    width: 100%;
+    text-align: center;
+    line-height: 200px;
+    font-size: 48px;
+}
+header h2, h3 {
+    text-align:center
+
+}
+
+table, th,td{
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 2px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.imagen{C:\Users\Familia GarciaOrtega\Desktop\Curso DAM\Lenguaje de Marcas\mi blog;
+    width: 100px;
+
+}
+style{
+        /* Estilo para el mensaje animado */
+        #message {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+            animation: move 10s linear infinite;
+        }
+
+        @keyframes move {
+            0% {
+                transform: translateX(-50%) translateX(100%);
+            }
+
+            100% {
+                transform: translateX(-50%) translateX(-100%);
+            }
+        }
+
+        /* Ocultar tiempo de carga */
+        #loading {
+            display: none;
+        }
