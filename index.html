@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <title>mi blog</title>
+    <link rel="stylesheet" href="estilos.css" />
+    <script src="scripts.js" defer></script>
+    
+</head>
+
+<body>
+    <div id="loading">Cargando...</div>
+    <div id="container">
+        <header>
+            <h1 id="blogTitle">Raul Garcia</h1>
+            <button onclick="cambiarTitulo()">cambia tu titulo</button>
+        </header>
+        <div class="clear"></div>
+
+        <section id="contenido">
+            <article class="article">
+                <p id="textoInformativo">Hola, soy Raul, tengo 36 años me dedico a la fabricación de piezas de avión con materiales compuestos, en mi tiempo libre me gusta salir hacer rutas, pasear con mi perro y ver series</p>
+
+                <article class="article">
+                    <header>
+                        <h2>MIS TOP 3 PELICULAS Y SERIES</h2>
+                    </header>
+                </article>
+
+                <table>
+                    <tr>
+                        <th>SERIES</th>
+                        <th>PELICULAS</th>
+                    </tr>
+                    <tr>
+                        <td>breaking bad</td>
+                        <td>el señor de los aniños</td>
+                    </tr>
+                    <tr>
+                        <td>stranger things</td>
+                        <td>troya</td>
+                    </tr>
+                    <tr>
+                        <td>peaky blinders</td>
+                        <td>la mascara</td>
+                    </tr>
+                </table>
+
+                <header>
+                    <h3>MI MASCOTA</h3>
+                </header>
+
+                <div id="img">
+                    <img class="imagen" src="hanna.jpg" alt="foto hanna"></img>
+                    <br>
+                    <button id="likeButton" onclick="darLike()">Dar Like</button>
+                    <span id="likeCounter">0 Likes</span>
+                </div>
+            </article>
+        </section>
+
+        <header>
+            <h4>FORMULARIO</h4>
+        </header>
+        <form>
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre"><br>
+            <label for="comentarios">Comentario o sugerencia:</label><br>
+            <textarea id="comentarios" name="comentarios" rows="4" cols="50" placeholder="Escribe aquí tus comentarios o sugerencias..." oninput="contarPalabras()"></textarea>
+            <br><br>
+            <span id="contadorPalabras">Palabras: 0</span>
+            <br><br>
+            <input type="submit" value="Enviar">
+        </form>
+
+        <br>
+        <form>
+            <div>
+                Series favoritas:
+                <select>
+                    <option>breaking bad</option>
+                    <option>peaky blinders</option>
+                    <option>Stranger Things</option>
+                </select><br>
+            </div>
+        </form>
+        <br>
+
+        <label for="colorSelector">Selecciona color del texto:</label>
+        <input type="color" id="colorSelector" onchange="cambiarColorTexto(this.value)">
+       
+        <div>
+            <button onclick="reproducirSonido()">Reproducir sonido</button>
+            <audio id="audio" src="sonido.mp3"></audio> 
+        </div>
+
+        <!-- Temporizador -->
+        <div id="temporizador">10</div>
+
+        <div id="message">Mensaje animado aquí</div>
+    </div>
+
+    <footer>
+        <span id="fechaActual"></span>
+    </footer>
+
+    <script>
+        // Mostrar la fecha actual en el pie de página
+        const fechaActual = new Date();
+        document.getElementById('fechaActual').innerText = `Fecha Actual: ${fechaActual.toLocaleDateString()}`;
+
+        // Mostrar el mensaje de carga durante 3 segundos al cargar la página
+        document.getElementById('loading').style.display = 'block';
+        setTimeout(() => {
+            document.getElementById('loading').style.display = 'none';
+        }, 3000);
+
+        // Contador de palabras
+        function contarPalabras() {
+            const textarea = document.getElementById('comentarios').value;
+            const palabras = textarea.trim().split(/\s+/).filter(function (palabra) {
+                return palabra.length > 0;
+            });
+            document.getElementById('contadorPalabras').innerText = 'Palabras: ' + palabras.length;
+        }
+
+        // Temporizador de cuenta regresiva de 10 segundos
+        let tiempo = 10; // segundos
+        const temporizadorDiv = document.getElementById('temporizador');
+        const intervalo = setInterval(() => {
+            tiempo--;
+            temporizadorDiv.innerText = tiempo;
+            if (tiempo <= 0) {
+                clearInterval(intervalo);
+                alert('¡El tiempo ha terminado!');
+            }
+        }, 1000);
+
+        // Función para reproducir sonido
+        function reproducirSonido() {
+            const audio = document.getElementById('audio');
+            audio.play();
+        }
+
+        let likeCount = 0;
+
+        function darLike() {
+            likeCount++;
+            document.getElementById('likeCounter').innerText = likeCount + ' Likes';
+        }
+
+        function cambiarTitulo() {
+            const newTitle = prompt('Introduce el nuevo título:');
+            if (newTitle) {
+                document.getElementById('blogTitle').innerText = newTitle;
+            }
+        }
+
+        function cambiarColorTexto(color) {
+            document.getElementById('textoInformativo').style.color = color;
+            document.getElementById('blogTitle').style.color = color;
+        }
+    </script>
+</body>
+
+</html>
